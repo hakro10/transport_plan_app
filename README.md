@@ -1,46 +1,190 @@
-# Getting Started with Create React App
+# Delivver Transport Management App 🚛
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive React TypeScript application for managing transport operations including drivers, trucks, trailers, and delivery planning with real-time tracking and resource scheduling.
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+### 🎯 **Dashboard - Command Center**
+- **Driver Shift Planning**: Set planned shift times for drivers
+- **Delivery Plan Creation**: Drag-and-drop interface for creating delivery routes
+- **Resource Management**: Real-time truck, trailer, and driver assignment
+- **Working Hours Tracking**: 15-hour daily limits with visual progress bars
+- **Resource Conflict Prevention**: Automatic validation to prevent double-booking
 
-### `npm start`
+### 👥 **Driver Management**
+- Full CRUD operations (Create, Read, Update, Delete)
+- **Controlled Shift System**: 
+  - Planners set shift times via Dashboard
+  - Drivers clock in/out in real-time
+  - Validation prevents early clock-ins or work without plans
+- Real-time status tracking (Available, Working, Busy)
+- Complete schedule history with detailed breakdowns
+- Working hours enforcement with daily/weekly limits
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 🚚 **Fleet Management**
+- **Trucks**: Manage fleet with capacity, fuel type, model tracking
+- **Trailers**: Location tracking, capacity management, availability status
+- Resource scheduling with conflict detection
+- Real-time availability indicators
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 📍 **Delivery Planning**
+- Drag-and-drop address assignment
+- Support for both local (USA) and international deliveries
+- Job types: Deliveries, Collections, Trailer Changes
+- **Smart Trailer Management**: Automatic trailer change jobs when switching trailers
+- Location selection for trailer drop-off/pickup points
+- Comprehensive notes system for all job types
 
-### `npm test`
+### ⏰ **Advanced Scheduling**
+- Resource availability validation during planned time periods
+- Schedule arrays for all resources (drivers, trucks, trailers)
+- Automatic status updates based on current time vs schedules
+- Plan editing with resource conflict checking
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📝 **Notes & Documentation**
+- Editable notes for all delivery/collection/trailer change jobs
+- Reference numbers and special instructions
+- Notes persist even after plans are saved
 
-### `npm run build`
+## 🚀 Quick Start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/hakro10/transport_plan_app.git
+   cd transport_plan_app
+   ```
 
-### `npm run eject`
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🏗️ Project Structure
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+src/
+├── components/          # Reusable UI components
+│   └── Layout.tsx      # Main app layout with navigation
+├── context/            # React Context for state management
+│   └── DataContext.tsx # Central data store and actions
+├── data/               # Mock data and constants
+│   └── mockData.ts     # Sample drivers, trucks, trailers, customers
+├── pages/              # Main application pages
+│   ├── Dashboard.tsx   # Shift planning & delivery creation
+│   ├── DriversPage.tsx # Driver management & clock in/out
+│   ├── TrucksPage.tsx  # Truck fleet management
+│   ├── TrailersPage.tsx # Trailer management
+│   └── CustomersPage.tsx # Customer address management
+├── types/              # TypeScript type definitions
+│   └── index.ts        # All interface definitions
+└── App.tsx             # Main application component
+```
 
-## Learn More
+## 🎮 How to Use
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### For Planners 📋
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Set Driver Shifts** (Dashboard)
+   - Go to Dashboard → Driver Shift Planning section
+   - Click "Set Shift Times" for any driver
+   - Set planned start and end times
+   - Drivers can only clock in after planned start time
+
+2. **Create Delivery Plans** (Dashboard)
+   - Select Driver, Truck, and Trailer
+   - Choose job type (Delivery/Collection)
+   - Set booking time and plan type (Local/International)
+   - Drag customer addresses to create route
+   - System automatically validates working hours and resource availability
+
+3. **Manage Resources** (Trucks/Trailers/Customers pages)
+   - Add/edit/delete trucks and trailers
+   - Track locations and capacity
+   - View availability status
+
+### For Drivers 🚛
+
+1. **Clock In/Out** (Drivers page)
+   - Go to Drivers page
+   - Find your driver card
+   - Click "Clock In" when starting work (only available if planner set shift times and you have assigned plans)
+   - Click "Clock Out" when finishing shift
+
+2. **View Your Schedule**
+   - Click "Schedule" to see all your assigned plans
+   - View detailed stop breakdowns with timing and notes
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React 19 with TypeScript
+- **UI Components**: Lucide React icons
+- **Drag & Drop**: @hello-pangea/dnd
+- **Routing**: React Router v6
+- **Styling**: Inline styles (for maximum compatibility)
+- **State Management**: React Context API
+- **Package Manager**: npm
+
+## 📊 Sample Data
+
+The app comes pre-loaded with:
+- **4 Drivers**: With various experience levels and availability
+- **4 Trucks**: Different models, capacities, and fuel types
+- **4 Trailers**: Various types and locations
+- **6 Customer Addresses**: Mix of USA and international locations
+- **3 Depot Locations**: For trailer management
+
+## 🔒 Validation & Safety Features
+
+- **Working Hours Limits**: 15-hour daily maximum with warnings
+- **Resource Conflicts**: Prevents double-booking of drivers, trucks, trailers
+- **Shift Validation**: Drivers cannot clock in without plans or before scheduled time
+- **Real-time Updates**: Status updates every minute based on active schedules
+- **Data Persistence**: All changes maintained during session
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙋‍♂️ Support
+
+If you have any questions or need help, please:
+1. Check the existing issues on GitHub
+2. Create a new issue with detailed description
+3. Provide steps to reproduce any bugs
+
+## 🎯 Future Enhancements
+
+- [ ] Database integration for data persistence
+- [ ] User authentication and role-based access
+- [ ] Mobile responsive design
+- [ ] GPS tracking integration
+- [ ] Automated route optimization
+- [ ] Email/SMS notifications
+- [ ] Reporting and analytics dashboard
+- [ ] Multi-language support
+
+---
+
+**Delivver Transport Management App** - Streamlining transport operations with intelligent planning and real-time tracking! 🚛✨
